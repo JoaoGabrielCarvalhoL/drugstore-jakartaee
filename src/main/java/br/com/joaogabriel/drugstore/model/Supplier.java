@@ -5,35 +5,43 @@ import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_category")
-public class Category {
-	
+@Table(name = "tb_supplier")
+public class Supplier {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = true)
-	private String description;
+	@Column(nullable = false)
+	private String nationalRegisterLegalEntities;
 	
-	@OneToMany(mappedBy = "category")
+	@Embedded
+	private Contact contact;
+
+	@ManyToOne
+	private Address address;
+	
+	@OneToMany(mappedBy = "supplier")
 	private List<Product> products;
 	
-	public Category() {}
+	public Supplier() { }
 	
-	public Category(String name, String description) {
+	public Supplier(String name, String nationalRegisterLegalEntities) {
 		this.name = name;
-		this.description = description;
+		this.nationalRegisterLegalEntities = nationalRegisterLegalEntities;
 	}
 
 	public UUID getId() {
@@ -52,18 +60,34 @@ public class Category {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getNationalRegisterLegalEntities() {
+		return nationalRegisterLegalEntities;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setNationalRegisterLegalEntities(String nationalRegisterLegalEntities) {
+		this.nationalRegisterLegalEntities = nationalRegisterLegalEntities;
 	}
 
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 	public List<Product> getProducts() {
 		return products;
 	}
-
+	
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
@@ -81,11 +105,11 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Supplier other = (Supplier) obj;
 		return Objects.equals(id, other.id);
 	}
 	
 	
+   
 	
-
 }
