@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -33,6 +33,11 @@ public class Contact {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [cellphone=" + cellphone + ", telephone=" + telephone + "]";
 	}
 	
 	

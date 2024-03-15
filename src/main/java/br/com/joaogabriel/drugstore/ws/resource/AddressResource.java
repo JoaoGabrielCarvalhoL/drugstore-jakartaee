@@ -1,9 +1,9 @@
-package br.com.joaogabrie.drugstore.ws.resource;
+package br.com.joaogabriel.drugstore.ws.resource;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.joaogabrie.drugstore.ws.payload.AddressResponse;
+import br.com.joaogabriel.drugstore.ws.payload.AddressResponse;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;

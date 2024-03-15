@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.util.List;
 import java.util.Objects;

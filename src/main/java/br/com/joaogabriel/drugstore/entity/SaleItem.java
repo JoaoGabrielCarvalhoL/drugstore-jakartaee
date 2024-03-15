@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.math.BigDecimal;
 import java.util.Objects;

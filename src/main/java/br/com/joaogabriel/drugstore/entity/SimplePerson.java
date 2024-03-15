@@ -1,19 +1,17 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -23,7 +21,7 @@ import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "tb_simple_person")
-public abstract class SimplePerson {
+public class SimplePerson {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -52,14 +50,17 @@ public abstract class SimplePerson {
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime updatedIn;
 
+	/*
 	@ManyToMany
 	@JoinTable(name = "addresses_persons", joinColumns = @JoinColumn(name = "simplePerson_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
-	private List<Address> adresses;
+	*/
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Address address;
 	
 	@Embedded
 	private Contact contact;
 
-	protected SimplePerson() {
+	public SimplePerson() {
 	}
 
 	public String getFirstName() {
@@ -94,12 +95,13 @@ public abstract class SimplePerson {
 		this.generalRegistration = generalRegistration;
 	}
 
-	public List<Address> getAdresses() {
-		return adresses;
+	
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAdresses(List<Address> adresses) {
-		this.adresses = adresses;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public LocalDate getBirthDate() {
@@ -151,4 +153,14 @@ public abstract class SimplePerson {
 	public void setupUpdatedIn() {
 		this.setUpdatedIn(LocalDateTime.now());
 	}
+
+	@Override
+	public String toString() {
+		return "SimplePerson [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", individualCertificate=" + individualCertificate + ", generalRegistration=" + generalRegistration
+				+ ", birthDate=" + birthDate + ", createdIn=" + createdIn + ", updatedIn=" + updatedIn + ", address="
+				+ address + ", contact=" + contact + "]";
+	}
+	
+	
 }

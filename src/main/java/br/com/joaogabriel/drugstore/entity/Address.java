@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -47,7 +47,7 @@ public class Address {
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
 	
-	@ManyToMany(mappedBy = "adresses")
+	@OneToMany(mappedBy = "address")
 	private List<SimplePerson> persons;
 	
 	public Address() {
@@ -66,6 +66,17 @@ public class Address {
 		this.addressType = addressType;
 	}
 
+	public Address(String zipCode, String publicPlace, String complement, String neighborhood, String locality,
+			String federativeUnit, String directRemoteDialing) {
+		this.zipCode = zipCode;
+		this.publicPlace = publicPlace;
+		this.complement = complement;
+		this.neighborhood = neighborhood;
+		this.locality = locality;
+		this.federativeUnit = federativeUnit;
+		this.directRemoteDialing = directRemoteDialing;
+	}
+	
 	public UUID getId() {
 		return id;
 	}
@@ -161,6 +172,14 @@ public class Address {
 			return false;
 		Address other = (Address) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", zipCode=" + zipCode + ", publicPlace=" + publicPlace + ", complement="
+				+ complement + ", neighborhood=" + neighborhood + ", locality=" + locality + ", federativeUnit="
+				+ federativeUnit + ", directRemoteDialing=" + directRemoteDialing + ", addressType=" + addressType
+				+ ", persons=" + persons + "]";
 	}
 	
 	

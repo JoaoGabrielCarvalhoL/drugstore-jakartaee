@@ -1,4 +1,4 @@
-package br.com.joaogabrie.drugstore.ws.payload;
+package br.com.joaogabriel.drugstore.ws.payload;
 
 import java.io.Serial;
 import java.io.Serializable;

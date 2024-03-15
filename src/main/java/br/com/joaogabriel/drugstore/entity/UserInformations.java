@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.util.UUID;
 
@@ -76,6 +76,14 @@ public class UserInformations {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "UserInformations [id=" + id + ", internetProtocol=" + internetProtocol + ", userAgent=" + userAgent
+				+ ", locale=" + locale + ", user=" + user + "]";
+	}
+	
+	
 	
 	
 	

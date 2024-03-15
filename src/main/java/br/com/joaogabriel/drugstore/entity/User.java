@@ -1,4 +1,4 @@
-package br.com.joaogabriel.drugstore.model;
+package br.com.joaogabriel.drugstore.entity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -46,20 +46,20 @@ public class User {
 	@Column(nullable = true)
 	private LocalDateTime hashPasswordResetIn;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Boolean isVerified;
 	
 	@Column(nullable = false)
 	private Boolean isTwoFactorAuthentication;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Boolean isActive;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private SimplePerson person;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private UserInformations userInformations;
+	private UserInformations userInformations = new  UserInformations();;
 	
 	public User() { }
 
@@ -74,6 +74,18 @@ public class User {
 		this.hashPassword = hashPassword;
 		this.isVerified = isVerified;
 		this.isTwoFactorAuthentication = isTwoFactorAuthentication;
+		this.isActive = isActive;
+		this.person = person;
+		this.userInformations = userInformations;
+	}
+	
+	public User(String username, String email, RoleType role, String hashPassword, Boolean isActive,
+			SimplePerson person, UserInformations userInformations) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.role = role;
+		this.hashPassword = hashPassword;
 		this.isActive = isActive;
 		this.person = person;
 		this.userInformations = userInformations;
@@ -191,6 +203,16 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", role=" + role + ", hashPassword="
+				+ hashPassword + ", hashPasswordReset=" + hashPasswordReset + ", hashPasswordResetIn="
+				+ hashPasswordResetIn + ", isVerified=" + isVerified + ", isTwoFactorAuthentication="
+				+ isTwoFactorAuthentication + ", isActive=" + isActive + ", person=" + person + ", userInformations="
+				+ userInformations + "]";
+	}
+	
 	
 	
 }

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:f="jakarta.faces.core"
+	xmlns:h="jakarta.faces.html" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>User</title>
+</h:head>
+<h:body>
+
+	<ui:include src="Menu.xhtml"></ui:include>
+	
+	<h:form id="formBasic">
+		<p:panel header="Personal Informations">
+		<p:messages closable="true">
+			<p:autoUpdate></p:autoUpdate>
+		</p:messages>
+		
+		<h:panelGrid columns="6" id="dataPanelPerson">
+			<p:outputLabel value="Code"></p:outputLabel>
+			<p:inputText readonly="true" size="10"  value="#{userBean.user.id}"></p:inputText>
+			
+			<p:outputLabel value="First Name" for="firstName"></p:outputLabel>
+			<p:inputText id="firstName" maxlength="50" size="20"  required="true" 
+				requiredMessage="The first name field is required!" value="#{userBean.person.firstName}"></p:inputText>
+				
+			<p:outputLabel value="Last Name" for="lastName"></p:outputLabel>
+			<p:inputText id="lastName" maxlength="50" size="20"  required="true" 
+				requiredMessage="The last name field is required!" value="#{userBean.person.lastName}"></p:inputText>
+		
+			<p:outputLabel value="Individual Certificate" for="individualCertificate"></p:outputLabel>
+			<p:inputText id="individualCertificate" maxlength="15" size="20"  required="true" 
+				requiredMessage="The individualCertificate field is required!" value="#{userBean.person.individualCertificate}"></p:inputText>
+				
+			<p:outputLabel value="General Registration" for="generalRegistration"></p:outputLabel>
+			<p:inputText id="generalRegistration" maxlength="15" size="20"  required="true" 
+				requiredMessage="The individualCertificate field is required!" value="#{userBean.person.generalRegistration}"></p:inputText>	
+				
+			<p:outputLabel value="Birth Date"></p:outputLabel>
+				<p:calendar pattern="dd/MM/yyyy" value="#{userBean.person.birthDate}"></p:calendar>
+				
+		
+			<p:outputLabel value="Cellphone" for="cellphone"></p:outputLabel>
+			<p:inputText id="cellphone" maxlength="15" size="20"  required="true" 
+				requiredMessage="The cellphone field is required!" value="#{userBean.contact.cellphone}"></p:inputText>
+				
+			<p:outputLabel value="Telephone" for="telephone"></p:outputLabel>
+			<p:inputText id="telephone" maxlength="15" size="20" value="#{userBean.contact.telephone}"></p:inputText>	
+		
+		</h:panelGrid>
+		</p:panel>
+		
+		<p:panel header="User Informations">
+			<p:messages closable="true">
+				<p:autoUpdate></p:autoUpdate>
+			</p:messages>
+			
+			<h:panelGrid columns="4" id="dataPanelUser">
+			
+				<p:outputLabel value="Username" for="username"></p:outputLabel>
+				<p:inputText id="username" maxlength="20" size="20"  required="true" 
+				requiredMessage="The username field is required!" value="#{userBean.user.username}"></p:inputText>
+				
+				<p:outputLabel value="Email" for="email"></p:outputLabel>
+				<p:inputText id="email" maxlength="20" size="20"  required="true" 
+				requiredMessage="The email field is required!" value="#{userBean.user.email}" type="email"></p:inputText>
+				
+				<p:outputLabel value="Password" for="password"></p:outputLabel>
+				<p:inputText id="password" maxlength="50" size="20"  required="true" 
+				requiredMessage="The password field is required!" value="#{userBean.user.hashPassword}" type="password"></p:inputText>
+				
+				<p:outputLabel value="Role"></p:outputLabel>
+				<p:selectOneRadio layout="lineDirection" id="radioBoxRole" value="#{userBean.user.role}">
+           			<f:selectItem itemLabel="Admin" itemValue="ROLE_ADMIN"/>
+            		<f:selectItem itemLabel="User" itemValue="ROLE_USER"/>
+        	</p:selectOneRadio>
+			
+			<p:outputLabel value="Enable Two Factor Authentication"></p:outputLabel>
+			<p:selectBooleanCheckbox value="#{userBean.user.isTwoFactorAuthentication}" itemLabel="Enable"/>
+			
+			</h:panelGrid>
+		
+		</p:panel>
+		
+		<p:panel header="Address Informartions">
+			
+				<p:messages closable="true">
+					<p:autoUpdate></p:autoUpdate>
+				</p:messages>
+				
+				<h:panelGrid columns="6" id="dataPanelAddress">
+				
+				
+				<p:outputLabel value="Public Place" for="publicPlace"></p:outputLabel>
+				<p:inputText id="publicPlace" maxlength="30" size="20"  required="true" 
+				requiredMessage="The public place field is required!" value="#{userBean.address.publicPlace}"></p:inputText>
+				
+				<p:outputLabel value="Complement" for="complement"></p:outputLabel>
+				<p:inputText id="complement" maxlength="30" size="20"  required="true" 
+				requiredMessage="The complement field is required!" value="#{userBean.address.complement}"></p:inputText>
+				
+				<p:outputLabel value="Neighborhood" for="neighborhood"></p:outputLabel>
+				<p:inputText id="neighborhood" maxlength="30" size="20"  required="true" 
+				requiredMessage="The neighborhood field is required!" value="#{userBean.address.neighborhood}"></p:inputText>
+				
+				<p:outputLabel value="Locality" for="locality"></p:outputLabel>
+				<p:inputText id="locality" maxlength="30" size="20"  required="	true" 
+				requiredMessage="The locality field is required!" value="#{userBean.address.locality}"></p:inputText>
+				
+				<p:outputLabel value="Federative Unit" for="federativeUnit"></p:outputLabel>
+				<p:inputText id="federativeUnit" maxlength="30" size="10"  required="true" 
+				requiredMessage="The federativeUnit field is required!" value="#{userBean.address.federativeUnit}"></p:inputText>
+				
+				<p:outputLabel value="Address Type"></p:outputLabel>
+				<p:selectOneRadio layout="lineDirection" id="radioBoxAddress" value="#{userBean.address.addressType}">
+           			<f:selectItem itemLabel="Commercial" itemValue="COMMERCIAL"/>
+            		<f:selectItem itemLabel="Residential" itemValue="RESIDENTIAL"/>
+            		<f:selectItem itemLabel="Other" itemValue="OTHER"/>
+        	</p:selectOneRadio>
+		
+			</h:panelGrid>
+		</p:panel>
+		
+		
+		
+		<h:panelGrid columns="2">
+				<p:commandButton value="Save" actionListener="#{userBean.save}" update="dataPanelPerson"></p:commandButton>
+				<p:commandButton value="Delete" actionListener="#{userBean.remove}" update="dataPanelPerson"></p:commandButton>
+			</h:panelGrid>
+		
+	</h:form>
+	
+	<h:form>
+		<p:panel header="Consult Zip Code">
+				<h:panelGrid columns="2">
+				<p:outputLabel value="Zip Code" for="zipCode"></p:outputLabel>
+				<p:inputText id="zipCode" maxlength="15" size="10"  required="true" 
+				requiredMessage="The zip code field is required!" value="#{userBean.zipCode}"></p:inputText>
+				
+			<p:commandButton value="Consult Zip Code" actionListener="#{userBean.findAddressByZipCode}"  update="formBasic:dataPanelAddress"></p:commandButton>
+		</h:panelGrid>
+		
+		</p:panel>	
+	</h:form>
+	
+	
+	
+	<ui:include src="Footer.xhtml"></ui:include>
+</h:body>
+</html>
