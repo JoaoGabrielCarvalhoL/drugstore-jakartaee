@@ -1,5 +1,6 @@
 package br.com.joaogabriel.drugstore.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,7 +22,9 @@ import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "tb_simple_person")
-public class SimplePerson {
+public class SimplePerson implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

@@ -1,5 +1,6 @@
 package br.com.joaogabriel.drugstore.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -17,7 +18,9 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

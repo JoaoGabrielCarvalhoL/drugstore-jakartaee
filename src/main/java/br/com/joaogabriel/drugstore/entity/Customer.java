@@ -1,5 +1,6 @@
 package br.com.joaogabriel.drugstore.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +20,9 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_customer")
-public class Customer {
+public class Customer implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

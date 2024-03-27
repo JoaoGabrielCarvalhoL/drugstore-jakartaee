@@ -1,10 +1,14 @@
 package br.com.joaogabriel.drugstore.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Contact {
+public class Contact implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
 	private String cellphone;

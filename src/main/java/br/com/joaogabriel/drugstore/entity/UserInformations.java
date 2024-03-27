@@ -1,5 +1,6 @@
 package br.com.joaogabriel.drugstore.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_user_informations")
-public class UserInformations {
+public class UserInformations implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue()
