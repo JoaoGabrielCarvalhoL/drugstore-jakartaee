@@ -16,16 +16,14 @@ public class AddressBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private AddressResource addressResource = new AddressResource();
+	private Address address = new Address();
 	private User user = new User();
 	private AddressMapper mapper = new AddressMapper();
 	private String zipCode;
 	
 	public void findAddressByZipCode() {
 		AddressResponse response = addressResource.getAddressByCep(zipCode);
-		System.out.println(response.toString());
-		//Address address = mapper.toAddress(response);
-		//this.user.getPerson().setAddress(address);
-		
+		mapper.toAddress(response);
 	}
 
 	public AddressResource getAddressResource() {

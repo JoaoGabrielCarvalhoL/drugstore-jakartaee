@@ -50,6 +50,9 @@ public class Address implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
 	
+	@Column(nullable = true )
+	private String houseNumber;
+	
 	@OneToMany(mappedBy = "address")
 	private List<SimplePerson> persons;
 	
@@ -58,7 +61,8 @@ public class Address implements Serializable {
 	}
 
 	public Address(String zipCode, String publicPlace, String complement, String neighborhood, String locality,
-			String federativeUnit, String directRemoteDialing, AddressType addressType) {
+			String federativeUnit, String directRemoteDialing, 
+			AddressType addressType, String houseNumber) {
 		this.zipCode = zipCode;
 		this.publicPlace = publicPlace;
 		this.complement = complement;
@@ -67,6 +71,7 @@ public class Address implements Serializable {
 		this.federativeUnit = federativeUnit;
 		this.directRemoteDialing = directRemoteDialing;
 		this.addressType = addressType;
+		this.houseNumber = houseNumber;
 	}
 
 	public Address(String zipCode, String publicPlace, String complement, String neighborhood, String locality,
@@ -159,6 +164,14 @@ public class Address implements Serializable {
 	public void setPersons(List<SimplePerson> persons) {
 		this.persons = persons;
 	}
+	
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+	
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
 
 	@Override
 	public int hashCode() {
@@ -185,7 +198,4 @@ public class Address implements Serializable {
 				+ ", persons=" + persons + "]";
 	}
 	
-	
-	
-
 }

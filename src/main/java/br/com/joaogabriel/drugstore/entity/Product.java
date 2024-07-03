@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -51,9 +52,11 @@ public class Product implements Serializable {
 	private Boolean isPerishable;
 	
 	@ManyToOne
+	@JoinColumn(nullable = false)
 	private Category category;
 	
 	@ManyToOne
+	@JoinColumn(nullable = false)
 	private Supplier supplier;
 	
 	public Product() {}
@@ -72,8 +75,6 @@ public class Product implements Serializable {
 		this.category = category;
 		this.supplier = supplier;
 	}
-
-
 
 	public UUID getId() {
 		return id;

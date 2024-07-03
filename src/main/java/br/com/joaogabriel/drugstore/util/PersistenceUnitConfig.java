@@ -27,7 +27,7 @@ public class PersistenceUnitConfig {
 
 	private EntityManagerFactory createEntityManagerFactory() {
 		try {
-			this.entityManagerFactory = Persistence.createEntityManagerFactory("drugstorePersistenceUnit");
+			this.entityManagerFactory = Persistence.createEntityManagerFactory("drugstorePersistenceUnitTest");
 			return this.entityManagerFactory;
 		} catch (Exception exception) {
 			logger.log(Level.SEVERE, "Unable to create entity manager factory");
